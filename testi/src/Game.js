@@ -1,26 +1,21 @@
 import React from 'react';
-//import React, {Component} from 'react';
-
 import Stats from './Stats.js';
 import Burger from './Burger.js';
 import Booster from './Booster.js';
 
 class Game extends React.Component {
 
-    constructor(props) {
+  constructor(props) {
         super(props);
-        this.state = {
-           clicks: 0
-        }
+        
         this.mouseClicked = this.mouseClicked.bind(this);
-      }
+  }
      
-       mouseClicked(){
-         const clicks = this.state.clicks;
-         this.setState({
-           clicks: clicks + 1
-         });
-       }  
+  mouseClicked(){
+      const clicks = this.props.clicks +1;
+      this.props.setClicks(clicks);
+         
+  }  
 
 
 render() {
@@ -30,7 +25,7 @@ render() {
          <h1>Burger Clicker</h1>
        </div>
        <div className="content content--justified">
-            <Stats count={this.state.clicks} />
+            <Stats count={this.props.clicks} />
             <Burger onClick={this.mouseClicked}/>
             <Booster boost={3.5} />
        </div>

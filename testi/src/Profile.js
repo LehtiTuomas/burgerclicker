@@ -1,5 +1,4 @@
 import React from 'react';
-//import React, {Component} from 'react';
 
 
 class Profile extends React.Component {
