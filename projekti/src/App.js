@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
+import testdata from'./testdata';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header from './Components/Header/Header.js';
+import Items from './Components/Items/Items';
+import Menu from './Components/Menu/Menu.js';
+import Stats from './Components/Stats/Stats';
+import Settings from './Components/Settings/Settings';
+import AddItem from'./Components/AddItem/AddItem';
+
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: testdata
+    }
+  }
+
+  render() {
+    return (
+     <Router>
+        <div className="App">
+          <Header />
+          <Route path="/" exact render={() => <Items data={this.state.data}/>}/>
+          <Route path="/stats" component={Stats}/>
+          <Route path="/settings" component={Settings}/>
+          <Route path="/add" render={() => <AddItem />}/>
+          <Menu />
+        </div>
+      </Router>
+   );
+  }
 }
+
 
 export default App;

@@ -1,0 +1,35 @@
+
+.loki {
+    padding: 1em;
+    border-bottom: 1px solid #BADDFE;
+  }
+  
+  .loki__rivi {
+   display: flex;
+   justify-content: space-between;
+   }
+  
+   .loki__toinenrivi {
+     display: flex;
+     justify-content: left;
+  }
+  
+   .loki__mpk, .loki__paivamaara {
+    line-height: 2em;
+  }
+  
+  .loki__text {
+    margin-right: 0.5em;
+    font-weight: bold;
+  }
+  
+   .loki__mpk, .loki__paivamaara {
+     font-weight: bold;
+   }
+  
+   .loki__text, .loki__koneh, .loki__reitti, .loki__saa, .loki__lisatiedot {
+     font-size: 85%;
+     color: #3b3b3b;
+     line-height: 1.5em;
+   }
+  
