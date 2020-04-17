@@ -16,9 +16,13 @@ class Clicker extends Component {
 
   constructor(props) {
     super(props);
+    let clicks = parseInt(localStorage.getItem("clicks"));
+    clicks = clicks ? clicks : 0;
+    let coupons = localStorage.getItem("coupons");
+    coupons = coupons ? JSON.parse(coupons) : [];
     this.state = {
-      clicks: 0,
-      coupons: [],
+      clicks: clicks,
+      coupons: coupons,
       claimableCoupons: 0,
       countUpdateValue: 0
     }
@@ -39,8 +43,8 @@ class Clicker extends Component {
       if (coupon.price <= clicks) {
         coupons++;
       }
-      if (updateValue < clicks && coupon.price > updateValue ||
-          coupon.price > clicks && coupon.price < updateValue) {
+      if ((updateValue < clicks && coupon.price > updateValue) ||
+          (coupon.price > clicks && coupon.price < updateValue)) {
         updateValue = coupon.price;
       }
       this.setState({
@@ -58,6 +62,7 @@ class Clicker extends Component {
     if (clicks > this.state.countUpdateValue) {
       this.updateCouponCount(clicks);
     }
+    localStorage.setItem("clicks",clicks);
   } 
 
  claimCoupon(couponId){
@@ -74,6 +79,8 @@ class Clicker extends Component {
      coupons: coupons
     });
     this.updateCouponCount(clicks);
+    localStorage.setItem("clicks", clicks);
+    localStorage.setItem("coupons", JSON.stringify(coupons));
   }
 
   render() {
